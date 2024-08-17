@@ -2,36 +2,48 @@ import React, { useState } from 'react';
 import './Login.css'
 import axios from 'axios';
 import { url } from '../url';
-import { useActionData, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import Loading from '../assets/Loading.json'
+import Lottie from 'lottie-react';
 
 const Register = () => {
 const [username,setUsername] = useState();
 const [email,setEmail] = useState();
 const [password,setPassword] = useState();
 const [warning,setWarning] = useState();
+const [loading,setLoading] = useState(false);
+
 const navigate = useNavigate()
 
 
   const handleRegister = async(e) => {
     e.preventDefault();
-    setWarning('')
-    try {
-      
-      
-      const res = await axios.post(`${url}auth/register`,{
-        username:username,
+    if(!username || !email || !password){
+      alert("Please fill all the details")
+    }
+    else{
+
+      setWarning('')
+      try {
+        setLoading(true)
+        
+        
+        await axios.post(`${url}auth/register`,{
+          username:username,
         email:email,
         password:password
       })
-       alert("Yippeee!! User registered !")
-        navigate('/login',{replace:true})
+      await new Promise((resolve)=>setTimeout(resolve,3000))
+      alert("Yippeee!! User registered !")
+      navigate('/login',{replace:true})
       
     } catch (err) {
-      {
-        // console.log(err);
-        setWarning(err.response.data)
-      }
+      
+      // console.log(err);
+      setWarning(err.response.data)
+      
     }
+  }
    
   };
 
@@ -78,15 +90,19 @@ const navigate = useNavigate()
             onChange={(e)=>setPassword(e.target.value)}
 
             />
+            {
+              loading ? <Lottie animationData={Loading} className='w-full h-14' />:
         <button
-          type='submit'
-          className="w-full bg-blue-500 text-white p-3 rounded-md font-bold transition-all duration-300 transform hover:scale-105"
-          >
+
+        type='submit'
+        className="mt-1 w-full bg-blue-500 text-white p-3 rounded-md font-bold transition-all duration-300 transform hover:scale-105"
+        >
           Register
         </button>
+          }
         </div>
           </form>
-          <p className='text-lg text-red'>{warning}</p>
+          <p className=' mt-2 text-lg text-red'>{warning}</p>
       </div>
     </div>
   );

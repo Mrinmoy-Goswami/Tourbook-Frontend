@@ -1,30 +1,46 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 import axios from "axios";
 import { url } from "../url";
+import Lottie from "lottie-react";
+import Loading from '../assets/Loading.json'
 
 const Login = () => {
   const userRef = useRef();
   const passwordRef = useRef();
-  const { dispatch, isFetching } = useContext(Context);
+  const { dispatch } = useContext(Context);
+  const [loading,setLoading] = useState(false)
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
+    
+    
     dispatch({ type: "LOGIN_START" });
     try {
-      const response = await axios.post(`${url}auth/login`, {
-        username: userRef.current.value,
-        password: passwordRef.current.value,
-      });
-      dispatch({ type: "LOGIN_SUCCESS", payload: response.data.username });
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE" });
-      alert(err.response.data)
-      // console.log(err.response.data)
-    }
-  };
+        setLoading(true)
+        
+        
+        const response = await axios.post(`${url}auth/login`, {
+          username: userRef.current.value,
+          password: passwordRef.current.value,
+        });
+        dispatch({ type: "LOGIN_SUCCESS", payload: response.data.username });
+        await new Promise((resolve)=>setTimeout(resolve,3000))
+        setLoading(false)
+        
+      }
+      catch (err) {
+        setLoading(false)
+
+        dispatch({ type: "LOGIN_FAILURE" });
+        alert(err.response.data)
+        // console.log(err.response.data)
+      }
+ 
+    };
   // console.log(isFetching)
 
   return (
@@ -60,12 +76,17 @@ const Login = () => {
             ref={passwordRef}
             />
         </div>
+        {loading?
+        <Lottie animationData={Loading} className="w-full h-14"/> 
+        :
         <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-3 rounded-md font-bold transition-all duration-300 transform hover:scale-105"
-          >
-          Login
+        type="submit"
+        className="w-full bg-blue-500 text-white p-3 rounded-md font-bold transition-all duration-300 transform hover:scale-105"
+        
+        >
+            Login
         </button>
+}
         <p className="my-4">Don't have an account?</p>
         <Link to={"/register"}>
           <button className="w-full bg-blue-500 text-white p-3 rounded-md font-bold transition-all duration-300 transform hover:scale-105">

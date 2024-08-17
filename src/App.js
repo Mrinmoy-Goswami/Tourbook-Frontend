@@ -2,7 +2,7 @@
 import './App.css';
 // import { ReactDOM } from 'react-dom';
 import { Route,Routes,BrowserRouter } from 'react-router-dom';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 // import PostCard from './components/PostCard';
 import Homepage from './pages/Homepage';
 import SinglePost from './pages/SinglePost';
