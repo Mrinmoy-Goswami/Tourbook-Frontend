@@ -38,7 +38,7 @@ function SinglePost() {
         });
       };
       getPost();
-    }, [post]);
+    }, []);
     // console.log(post.pic);
     
     const Update = async()=>{
@@ -106,11 +106,12 @@ function SinglePost() {
         <ArrowCircleLeft2 size="32" color="#03C988" variant="Bold" />
       </Link>
       <div className="flex flex-col items-center mt-10 p-3">
+
         <img
           className="sm:w-2/3 sm:h-80 w-full  rounded-xl   object-cover"
           alt="Scene"
           src={post.pic ? post.pic : picDef}
-          
+
         />
         <span className="flex flex-row justify-between w-2/3">
           <h1 className="text-xl font-bold text-emerald-500 font-serif">

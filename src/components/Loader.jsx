@@ -4,10 +4,10 @@ import loading from '../assets/Loading.json'
 
 const Loader = () => {
   return (
-    <div className='h-screen sm:h-auto object-cover z-[-2] bg-black-400 '>
-      <div className='h-20 w-20'>
+    <div className='h-screen w-screen sm:h-auto object-cover z-[-2] bg-black-400 '>
+      <div className='h-screen w-screen flex items-center justify-center '>
 
-      <Lottie  animationData={loading}/>
+      <Lottie  animationData={loading} className='h-20 w-20'/>
       </div>
     </div>
   )
