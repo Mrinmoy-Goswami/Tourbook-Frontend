@@ -1,6 +1,6 @@
-import React, { Suspense, useEffect,lazy } from "react";
+import React, { Suspense, useEffect} from "react";
 import Navbar from "../components/Navbar";
-import Lazyvideo from "../components/Lazyvideo";
+// import Lazyvideo from "../components/Lazyvideo";
 import "./Homepage.css";
 import Blogs from "../components/Blogs";
 import oyo from "../assets/oyo.png";
@@ -25,7 +25,7 @@ function Homepage() {
   const [posts,setPosts] = useState([]);
  const[promptText,setPromptText] = useState("");
  const[itinerary,setItinerary] = useState("");
- const[formatedData,setFormatedData] = useState("");
+
  const [promptLoad,setPromptLoad] = useState(false)
 
   useEffect(()=>{
@@ -104,7 +104,7 @@ const Lazyvid = React.lazy(()=>import('../components/Lazyvideo'))
       </div>
 
     <h1 className="font-serif font-black sm:text-[100px] text-[30px] text-center text-gray-500">travel the world with our partners</h1>
-    <Lottie className="h-40 w-40 sm:h-50 sm:w-50" animationData={travel}></Lottie>
+    <Lottie className="h-40 w-40 sm:h-50 sm:w-50" animationData={travel} loop={false}></Lottie>
     <div className="flex flex-row justify-around mt-10 mb-10 w-full" >
       <img className="sm:h-40 sm:w-40 h-10 w-10 mx-5 rounded shadow-lg" src={mmt}alt="mmt" />
       <img className="sm:h-40 sm:w-40 h-10 w-10 mx-5 rounded shadow-lg" src={oyo}alt="oyo" />

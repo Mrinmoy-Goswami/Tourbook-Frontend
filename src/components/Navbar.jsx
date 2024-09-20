@@ -20,33 +20,33 @@ function Navbar() {
     navigate("/login", { replace: true });
   };
   return (
-    <div className="absolute  top-0 left-0 right-0  w-full">
-      <header className="flex-row  text-[#6fdee7] font-serif font-extrabold text-[40px] w-full flex justify-center text-center mt-4
-       ">
+    <div className="absolute  top-0 left-0 right-0  w-full z-3">
+      <header className="flex-row  font-serif font-extrabold sm:text-[40px] text-xl w-full flex justify-center text-center mt-4
+       text-[#333333]">
         Tourbook
         <Lottie
-          className="h-20 pb-3 w-20"
+          className="sm:h-20 pb-3 sm:w-20 h-10 w-10"
           animationData={header}
           loop={false}
         ></Lottie>
       </header>
-      <p className="text-white font-serif italic  flex justify-center">
-        We love to hear your stories, {user} !
+      <p className="text-gray-700 font-serif italic  flex justify-center">
+        We love to hear your stories {user} !
       </p>
-      <nav className="hidden sm:flex sm:flex-row justify-around p-5 font-mono text-white  cursor-pointer w-full h-full pt-10 text-[20px] ">
+      <nav className="hidden sm:flex sm:flex-row justify-around p-5 font-mono text-gray-800  cursor-pointer w-full h-full pt-10 text-[20px] ">
         <Link to={"/"}>
-          <h3 className="hover:bg-sky-600 rounded-xl p-3">Home </h3>
+          <h3 className="hover:bg-sky-600 hover:text-white  rounded-xl p-3">Home </h3>
         </Link>
         <Link to={"/write"}>
-          <h3 className="hover:bg-sky-600 rounded-xl p-3">Write a blog</h3>
+          <h3 className="hover:bg-sky-600 hover:text-white rounded-xl p-3">Write a blog</h3>
         </Link>
         <Link to={"/"}>
           {" "}
-          <h3 className="hover:bg-sky-600 rounded-xl p-3">About </h3>
+          <h3 className="hover:bg-sky-600 hover:text-white rounded-xl p-3">About </h3>
         </Link>
         {user ? (
           <h3
-            className="hover:bg-sky-600 rounded-xl p-3"
+            className="hover:bg-sky-600 hover:text-white rounded-xl p-3"
             onClick={handleLogout}
           >
             Logout{" "}
