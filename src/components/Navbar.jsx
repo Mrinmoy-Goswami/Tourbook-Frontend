@@ -21,11 +21,11 @@ function Navbar() {
   };
   return (
     <div className="absolute  top-0 left-0 right-0  w-full z-3">
-      <header className="flex-row  font-serif font-extrabold sm:text-[40px] text-xl w-full flex justify-center text-center mt-4
+      <header className="flex-row  font-serif font-extrabold sm:text-[40px] text-xl w-full flex justify-center text-center items-center mt-4
        text-[#333333]">
         Tourbook
         <Lottie
-          className="sm:h-20 pb-3 sm:w-20 h-10 w-10"
+          className="sm:h-16  sm:w-16  h-10 w-10"
           animationData={header}
           loop={false}
         ></Lottie>

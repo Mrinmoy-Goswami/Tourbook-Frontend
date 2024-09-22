@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect} from "react";
 import Navbar from "../components/Navbar";
-// import Lazyvideo from "../components/Lazyvideo";
+
 import "./Homepage.css";
 import Blogs from "../components/Blogs";
 import oyo from "../assets/oyo.png";
@@ -41,7 +41,7 @@ function Homepage() {
       // console.log(response); 
     } 
     fetchPosts();
-  },[]) 
+  },[])   
 
 
   const handlePrompt = async ()=>{
@@ -52,15 +52,16 @@ function Homepage() {
 
        try {
          setPromptLoad(true)
-         await axios.post("http://localhost:4000/prompt",{
-        prompt:`Write me an itinerary for the destination ${promptText} and include travel packages or any other related links as well.Write all the links as reference at the last  `
-  }).then((res)=>setItinerary(res.data.replaceAll("**"," \n ")));
+         await axios.post("https://tourbook-blog.onrender.com/prompt",{
+         prompt: promptText
+  }).then((res)=>setItinerary(res.data.response.candidates[0].content.parts[0].text));
+  console.log(itinerary)
   
-  
-  setItinerary(itinerary=>itinerary.replaceAll("*"," \n "))
+  // setItinerary(itinerary=>itinerary.replaceAll("*"," \n "))
   setPromptLoad(false)
 } catch (error) {
   alert("Some error occured !");
+  console.log(error)
   setPromptLoad(false)
 }
 }

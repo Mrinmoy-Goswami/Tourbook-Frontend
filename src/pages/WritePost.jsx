@@ -8,8 +8,11 @@ import { Context } from "../context/Context";
 import { url } from "../url";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import loadinganimation from "../assets/Loading.json"
+import Lottie from "lottie-react";
 
 function WritePost() {
+  const[loading,setLoading] = useState(false)
   const [post, setPost] = useState();
   const [title, setTitle] = useState();
   const [image, setImage] = useState(null);
@@ -33,6 +36,7 @@ function WritePost() {
   //Uploading the selected file to cloud
   const uploadPic = async(e) => {
     e.preventDefault();
+    setLoading(true)
     if(image){
       const storageRef = ref(storage, `images/${v4()}`);
       uploadBytes(storageRef, image).then(() => {
@@ -41,27 +45,33 @@ function WritePost() {
           setImageUrl(url);
           // console.log(url);
           alert("Image uploaded")
-          
+          setLoading(false)
         })
         .catch((er) => console.log(er));
+      setLoading(false)
       });
 
     }
     else{
       alert("No image selected")
+      setLoading(false)
     }
   };
 
   //Posting post details to database
   const handlePost = async (e) => {
+    setLoading(true)
     e.preventDefault();
     if(!title ){
+      setLoading(false)
       alert("Please add a title to your post !")
     }
     else if(!post){
+      setLoading(false)
       alert("Post cannot be empty")
     }
     else if(!post && !title){
+      setLoading(false)
       alert("Post cannot be empty")
     }
     else{
@@ -77,9 +87,11 @@ function WritePost() {
         // console.log(newPost.pic);
          await axios.post(`${url}posts`, newPost);
         alert("Posted Succesfully");
+      setLoading(false)
         // console.log(response)
         navigate("/");
       } catch (err) {
+      setLoading(false)
         console.log(err);
         alert(err);
       }
@@ -100,7 +112,7 @@ function WritePost() {
       <button className="mt-5"></button>
       {image && (
         <img
-          className="w-2/3 h-[400px] rounded-xl"
+          className="w-2/3 h-[400px] rounded-xl object-cover"
           src={URL.createObjectURL(image)}
           alt=""
         />
@@ -128,12 +140,13 @@ function WritePost() {
           className="hidden"
           onChange={upload}
         />
-        <button
-          onClick={uploadPic}
-          className="rounded text-xl bg-emerald-400 hover:bg-emerald-600 text-white py-1 px-3 m-2"
-        >
-          Add image
-        </button>
+          {loading ? <Lottie animationData={loadinganimation} className="w-full h-14" /> : 
+           <button
+           onClick={uploadPic}
+           className="rounded text-xl bg-emerald-400 hover:bg-emerald-600 text-white py-1 px-3 m-2"
+         >Add image
+         </button>}
+       
         <input
           type="text"
           placeholder="Title"
@@ -145,12 +158,15 @@ function WritePost() {
           className="mt-10 w-2/3  outline-blue-400 p-2 h-[200px]"
           onChange={(e) => setPost(e.target.value)}
         />
+        {loading ? <Lottie animationData={loadinganimation} className="w-full h-14" /> :
         <button
-          onClick={handlePost}
-          className="rounded text-xl bg-emerald-400 hover:bg-emerald-600 text-white py-1 px-3 m-2"
-        >
-          Post
-        </button>
+        onClick={handlePost}
+        className="rounded text-xl bg-emerald-400 hover:bg-emerald-600 text-white py-1 px-3 m-2"
+      >
+        Post
+      </button>
+        }
+        
       </form>
     </div>
   );
