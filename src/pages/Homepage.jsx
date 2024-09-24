@@ -92,7 +92,7 @@ const Lazyvid = React.lazy(()=>import('../components/Lazyvideo'))
         />
         <button
           onClick={handlePrompt}
-          className="rounded text-xl bg-pink-500 hover:bg-pink-300 text-white py-2 px-3 mt-4 mb-5 shadow-lg"
+          className="rounded text-xl bg-gray-700 hover:bg-gray-900 text-white py-2 px-3 mt-4 mb-5 shadow-lg"
           disabled = {promptLoad}
         >
           {promptLoad ? <Lottie animationData={Loading} className="h-8 w-28"/>:"Generate itinerary"}

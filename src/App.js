@@ -10,11 +10,14 @@ import Login from './pages/Login';
 // import WritePost from './pages/WritePost';
 import Register from './pages/Register';
 import WritePost from './pages/WritePost';
-import { useContext } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import { Context } from './context/Context';
+import Loader from './components/Loader';
 
 function App() {
   const {user} = useContext(Context);
+
+  const LazyPost = lazy(()=>import("./pages/SinglePost"))
   return (
     <BrowserRouter>
   
@@ -25,7 +28,10 @@ function App() {
       <Route path='/login' element={user?<Homepage/> : <Login/>}/>
       <Route path='/register' element={user?<Homepage/> : <Register/>}/>
       <Route path='/write' element={user?<WritePost/> : <Login/>}/>
-      <Route path='/post/:postId' element={<SinglePost/>}/>
+      <Route path='/post/:postId'
+       element={<Suspense fallback={<Loader/>}>
+        <LazyPost/>
+      </Suspense>}/>
 
 
      </Routes>
