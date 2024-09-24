@@ -7,6 +7,7 @@ import { Link, useLocation,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../context/Context";
 import { url } from "../url";
+import loader from "../assets/Loading.json"
 
 function SinglePost() {
   const [post, setPost] = useState({});
@@ -106,6 +107,7 @@ function SinglePost() {
         <ArrowCircleLeft2 size="32" color="#03C988" variant="Bold" />
       </Link>
       <div className="flex flex-col items-center mt-10 p-3">
+
 
         <img
           className="sm:w-2/3 sm:h-80 w-full  rounded-xl   object-cover"
