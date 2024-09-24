@@ -33,20 +33,20 @@ function Navbar() {
       <p className="text-gray-700 font-serif italic  flex justify-center">
         We love to hear your stories {user} !
       </p>
-      <nav className="hidden sm:flex sm:flex-row justify-around p-5 font-mono text-gray-800  cursor-pointer w-full h-full pt-10 text-[20px] ">
+      <nav className="hidden sm:flex sm:flex-row justify-around p-5 font-mono text-gray-800 font-sans  cursor-pointer w-full h-full pt-10 text-[20px] ">
         <Link to={"/"}>
-          <h3 className="hover:bg-sky-600 hover:text-white  rounded-xl p-3">Home </h3>
+          <h3 className="hover:bg-gray-800 hover:text-white  rounded-xl p-3">Home </h3>
         </Link>
         <Link to={"/write"}>
-          <h3 className="hover:bg-sky-600 hover:text-white rounded-xl p-3">Write a blog</h3>
+          <h3 className="hover:bg-gray-800 hover:text-white rounded-xl p-3">Write a blog</h3>
         </Link>
         <Link to={"/"}>
           {" "}
-          <h3 className="hover:bg-sky-600 hover:text-white rounded-xl p-3">About </h3>
+          <h3 className="hover:bg-gray-800 hover:text-white rounded-xl p-3">About </h3>
         </Link>
         {user ? (
           <h3
-            className="hover:bg-sky-600 hover:text-white rounded-xl p-3"
+            className="hover:bg-gray-800 hover:text-white rounded-xl p-3"
             onClick={handleLogout}
           >
             Logout{" "}
@@ -54,7 +54,7 @@ function Navbar() {
         ) : (
           <Link to={"/login"}>
             {" "}
-            <h3 className="hover:bg-sky-600 rounded-xl p-3">Login </h3>
+            <h3 className="hover:bg-gray-800 hover:text-white  rounded-xl p-3">Login </h3>
           </Link>
         )}
       </nav>
