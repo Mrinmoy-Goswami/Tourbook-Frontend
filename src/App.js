@@ -5,7 +5,6 @@ import { Route,Routes,BrowserRouter } from 'react-router-dom';
 // import Navbar from './components/Navbar';
 // import PostCard from './components/PostCard';
 import Homepage from './pages/Homepage';
-import SinglePost from './pages/SinglePost';
 import Login from './pages/Login';
 // import WritePost from './pages/WritePost';
 import Register from './pages/Register';
@@ -13,6 +12,10 @@ import WritePost from './pages/WritePost';
 import { lazy, Suspense, useContext } from 'react';
 import { Context } from './context/Context';
 import Loader from './components/Loader';
+
+
+// generateText("Explain JWT in simple words").then(console.log);
+
 
 function App() {
   const {user} = useContext(Context);

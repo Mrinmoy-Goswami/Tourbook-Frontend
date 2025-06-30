@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect} from "react";
+import  { useEffect} from "react";
 import Navbar from "../components/Navbar";
 
 import "./Homepage.css";
@@ -69,7 +69,6 @@ function Homepage() {
 }
 }
 
-const Lazyvid = React.lazy(()=>import('../components/Lazyvideo'))
   return (
     <>
     <div className="flex flex-col w-full h-screen items-center ">
