@@ -56,10 +56,10 @@ function Homepage() {
          setPromptLoad(true)
          await axios.post(`${url}prompt`,{
          prompt: promptText
-  }).then((res)=>setItinerary(res.data.response.candidates[0].content.parts[0].text));
-  console.log(itinerary)
+  }).then((res)=>setItinerary(res.data.result));
+  // console.log(itinerary)
   
-  // setItinerary(itinerary=>itinerary.replaceAll("*"," \n "))
+  setItinerary(itinerary=>itinerary.replaceAll("**"," \n "))
   setPromptLoad(false)
 } catch (error) {
   alert("Some error occured !");
@@ -100,10 +100,9 @@ function Homepage() {
           {promptLoad ? <Lottie animationData={Loading} className="h-8 w-28"/>:"Generate itinerary"}
         
         </button>
-        <p className="w-full bg-white p-5 rounded m-4 tracking-widest font-serif">
-       
-         {itinerary ? itinerary :<span className="text-gray-300"> Your itinerary here </span>}
-        </p>
+        <pre className="w-full bg-white p-5 rounded m-4 tracking-widest font-serif whitespace-pre-wrap">
+  {itinerary ? itinerary : <span className="text-gray-300">Your itinerary here</span>}
+</pre>
       </div>
 
     <h1 className="font-serif font-black sm:text-[100px] text-[30px] text-center text-gray-500">travel the world with our partners</h1>
