@@ -15,7 +15,9 @@ import axios from 'axios'
 import Footer from "../components/Footer";
 import { url } from "../url";
 import Loading from '../assets/Loading.json'
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
+import Carousel from "../components/Carousel";
+// import Featured from "../components/Featured";
 
 
 
@@ -52,7 +54,7 @@ function Homepage() {
 
        try {
          setPromptLoad(true)
-         await axios.post("https://tourbook-blog.onrender.com/prompt",{
+         await axios.post(`${url}prompt`,{
          prompt: promptText
   }).then((res)=>setItinerary(res.data.response.candidates[0].content.parts[0].text));
   console.log(itinerary)
@@ -77,10 +79,11 @@ const Lazyvid = React.lazy(()=>import('../components/Lazyvideo'))
         </span>
 
         <div className="flex ">
-        <Suspense fallback={<Loader/>}>
-          <Lazyvid/>
-        </Suspense>
+     <Carousel/>
         </div>
+        {/* <div className="flex w-full   justify-center">
+     <Featured/>
+        </div> */}
       </div>
       <div className="flex flex-col items-center">
          
